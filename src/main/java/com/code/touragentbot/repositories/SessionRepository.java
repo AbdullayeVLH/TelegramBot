@@ -21,8 +21,8 @@ public class SessionRepository {
         return session;
     }
 
-    public Session find(Long chtId){
-        return (Session) template.opsForHash().get(HASH_KEY, chtId);
+    public Session find(Long chatId){
+        return (Session) template.opsForHash().get(HASH_KEY, chatId);
     }
 
     public String delete(Long chatId){

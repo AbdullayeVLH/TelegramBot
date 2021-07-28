@@ -31,7 +31,7 @@ public class BotConfig {
         TourBot bot = new TourBot(botUsername, botToken, botPath, botService);
         List<BotCommand> commands = new ArrayList<>();
         bot.execute(SetWebhook.builder().url(botPath).build());
-        commands.add(BotCommand.builder().command("start").description("Stat bot").build());
+        commands.add(BotCommand.builder().command("start").description("Start bot").build());
         commands.add(BotCommand.builder().command("stop").description("Stop bot").build());
         bot.execute(SetMyCommands.builder().commands(commands).build());
         return bot;

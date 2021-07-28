@@ -21,18 +21,16 @@ public class BotServiceImpl implements BotService {
 
     private final ActionRepository actionRepo;
     private final LocaleRepository localeRepo;
-    private final OrderRepository orderRepo;
     private final QuestionRepository questionRepo;
     private final SessionRepository sessionRepo;
     private final RabbitMQService rabbitMQService;
 
 
     public BotServiceImpl(ActionRepository actionRepo, LocaleRepository localeRepo,
-                          OrderRepository orderRepo, QuestionRepository questionRepo,
+                          QuestionRepository questionRepo,
                           SessionRepository sessionRepo, RabbitMQService rabbitMQService) {
         this.actionRepo = actionRepo;
         this.localeRepo = localeRepo;
-        this.orderRepo = orderRepo;
         this.questionRepo = questionRepo;
         this.sessionRepo = sessionRepo;
         this.rabbitMQService = rabbitMQService;
@@ -55,7 +53,7 @@ public class BotServiceImpl implements BotService {
                 return new SendMessage(update.getMessage().getChatId().toString(), "You have active order. Please stop it first by /stop command");
             }
             session = new Session();
-            session = session.toBuilder().chatId(update.getMessage().getChatId()).order(null).build();
+            session = session.toBuilder().chatId(update.getMessage().getChatId()).build();
             sessionRepo.save(session);
             return askQuestions(update, bot);
         } else if (update.getMessage().getText().equals("/stop")) {
@@ -105,11 +103,8 @@ public class BotServiceImpl implements BotService {
         }
         String lang = session.getLang();
         Long nextId = session.getAction().getNextId();
-        System.out.println("Next id:"+nextId);
         if (nextId != null) {
             question = questionRepo.getQuestionsById(nextId);
-            System.out.println("Question:"+question.getKey());
-            System.out.println("Lang:"+lang);
             Locale locale=localeRepo.getLocaleByKeyAndLang(question.getKey(),lang);
             SendMessage sendMessage = new SendMessage();
             sendMessage.setChatId(update.getMessage().getChatId().toString());

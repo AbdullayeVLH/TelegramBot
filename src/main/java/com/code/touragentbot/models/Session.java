@@ -17,16 +17,12 @@ import java.util.UUID;
 @RedisHash("Session")
 @ToString
 public class Session implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private UUID sessionId = UUID.randomUUID();
+    private UUID sessionId;
     private Long chatId;
     private String lang;
     private Map<String, String> data;
 
     private Action action;
-    private Order order;
 
     public Session() {
         this.data=new HashMap<>();
