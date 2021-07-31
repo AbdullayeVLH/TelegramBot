@@ -60,6 +60,7 @@ public class BotServiceImpl implements BotService {
             if (sessionRepo.find(update.getMessage().getChatId()) == null) {
                 return new SendMessage(update.getMessage().getChatId().toString(), "You don't have active order. Please start it first by /start command");
             }
+            rabbitMQService.sendToStopQueue(sessionRepo.find(update.getMessage().getChatId()));
             return new SendMessage(update.getMessage().getChatId().toString(), sessionRepo.delete(update.getMessage().getChatId()));
         }
         return new SendMessage(update.getMessage().getChatId().toString(), "Incorrect command");
