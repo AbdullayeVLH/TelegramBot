@@ -2,7 +2,7 @@ package com.code.touragentbot.services;
 
 
 import com.code.touragentbot.configs.RabbitMQConfig;
-import com.code.touragentbot.models.Offer;
+import com.code.touragentbot.models.Accepted;
 import com.code.touragentbot.models.Session;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,6 @@ public class RabbitMQServiceImpl implements RabbitMQService{
 
     @Override
     public void sendToQueue(Session session) {
-        session = session.toBuilder().sessionId(UUID.randomUUID()).build();
         template.convertAndSend(RabbitMQConfig.QUEUE, session);
     }
 
@@ -32,7 +31,7 @@ public class RabbitMQServiceImpl implements RabbitMQService{
     }
 
     @Override
-    public void sendToAcceptedQueue(Offer offer){
+    public void sendToAcceptedQueue(Accepted offer){
         template.convertAndSend(RabbitMQConfig.ACCEPTED_QUEUE, offer);
     }
 }

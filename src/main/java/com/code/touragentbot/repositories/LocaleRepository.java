@@ -23,4 +23,6 @@ public interface LocaleRepository extends JpaRepository<Locale, Long> {
     @Query(value = "SELECT * FROM locales l where l.key=:key and l.lang=:lang and l.is_action=false", nativeQuery = true)
     Locale getLocaleByKeyAndLang(String key, String lang);
 
+    List<Locale> getLocalesByKey(String key);
+
 }

@@ -1,9 +1,11 @@
 package com.code.touragentbot.models;
 
+
 import lombok.*;
 import org.hibernate.annotations.Proxy;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.UUID;
 
 @Getter
@@ -12,14 +14,10 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @Entity
-@Table(name = "offers")
 @Proxy(lazy = false)
-public class Offer {
+public class Accepted {
     @Id
-    private Long id;
-    private String price;
-    private String dateInterval;
-    private String tourInformation;
-    private String userEmail;
     private UUID requestId;
+    private String contactInfo;
+    private String agentEmail;
 }

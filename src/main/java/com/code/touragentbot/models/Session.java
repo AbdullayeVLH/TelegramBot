@@ -3,6 +3,7 @@ package com.code.touragentbot.models;
 import lombok.*;
 import org.springframework.data.redis.core.RedisHash;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ public class Session implements Serializable {
     private UUID sessionId;
     private Long chatId;
     private String lang;
+
     private Map<String, String> data;
 
     private Action action;

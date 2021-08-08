@@ -1,6 +1,6 @@
 package com.code.touragentbot.services;
 
-import com.code.touragentbot.models.Offer;
+import com.code.touragentbot.models.Accepted;
 import com.code.touragentbot.models.Session;
 
 public interface RabbitMQService {
@@ -9,5 +9,5 @@ public interface RabbitMQService {
 
     void sendToStopQueue(Session session);
 
-    public void sendToAcceptedQueue(Offer offer);
+    void sendToAcceptedQueue(Accepted offer);
 }

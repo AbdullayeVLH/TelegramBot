@@ -7,4 +7,5 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public interface BotService {
     BotApiMethod<?> getUpdate(Update update, TelegramWebhookBot bot) throws TelegramApiException;
+
 }
