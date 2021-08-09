@@ -16,9 +16,9 @@ public class SessionRepository {
 
     public static final String HASH_KEY = "Session";
 
-    private final RedisTemplate template;
+    private final RedisTemplate<String, Object> template;
 
-    public SessionRepository(SessionDBRepository sessionDBRepo, @Qualifier("redis") RedisTemplate template) {
+    public SessionRepository(SessionDBRepository sessionDBRepo, RedisTemplate<String, Object> template) {
         this.sessionDBRepo = sessionDBRepo;
         this.template = template;
     }

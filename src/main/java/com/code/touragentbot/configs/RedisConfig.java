@@ -19,8 +19,6 @@ import java.net.URISyntaxException;
 
 @Configuration
 @EnableRedisRepositories
-@EnableCaching
-@Qualifier("redis")
 @Profile("!dev")
 public class RedisConfig {
 
@@ -36,7 +34,7 @@ public class RedisConfig {
     }
 
     @Bean
-    public RedisTemplate<String, Object> redisSubTemplate() throws URISyntaxException {
+    public RedisTemplate<String, Object> redisTemplate() throws URISyntaxException {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(jedisConnectionFactory());
         redisTemplate.setKeySerializer(new StringRedisSerializer());
