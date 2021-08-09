@@ -27,7 +27,7 @@ public class ImageServiceImpl implements ImageService {
         Map<String, Object> parameters = new HashMap<>();
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
         try{
-            File out = new File(offer.getRequestId() + "." + "jpg");
+            File out = new File(offer.getRequestId() + offer.getUserEmail() + "." + "jpg");
             BufferedImage image = (BufferedImage) JasperPrintManager.printPageToImage(jasperPrint, 0,1f);
             ImageIO.write(image, "jpg", out);
             return out;
